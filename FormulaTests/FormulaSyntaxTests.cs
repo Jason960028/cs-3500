@@ -72,7 +72,7 @@ public class FormulaSyntaxTests
     [ExpectedException( typeof( FormulaFormatException ) )]
     public void FormulaConstructor_TestNoTokens_Invalid( )
     {
-        _ = new Formula( string.Empty );  // note: it is arguable that you should replace "" with string.Empty for readability and clarity of intent (e.g., not a cut and paste error or a "I forgot to put something there" error).
+        _ = new Formula(string.Empty);
     }
 
     /// <summary>
@@ -228,6 +228,13 @@ public class FormulaSyntaxTests
     public void FormulaConstructor_TestFormulaFormatException_Thrown()
     {
         _ = new Formula("5 +- 2");
+    }
+
+
+    [TestMethod]
+    public void FormulaConstructor_TestValidNumberVariable_Valid()
+    {
+        _ = new Formula("5 + x");
     }
 
 }
