@@ -77,7 +77,7 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     This test should run correctly with single token formula.
+    ///     This test should run correctly because each token used is correct.
     /// </summary>
     [TestMethod]
     public void FormulaConstructor_TestOneToken_Valid()
@@ -85,6 +85,42 @@ public class FormulaSyntaxTests
         _ = new Formula("A1");
         _ = new Formula("123");
         _ = new Formula("5.5");
+    }
+
+    [TestMethod]//Question
+    [ExpectedException(typeof(FormulaFormatException))]
+    public void FormulaConstructor_OneToken_InValid()
+    {
+        //_ = new Formula("A1B1");
+        _ = new Formula("1B");
+        _ = new Formula("$");
+        _ = new Formula("x");
+        _ = new Formula("100");
+    }
+
+
+
+    /// <summary>
+    ///     This test make sure program run correctly when special notation is used. 
+    ///     1. Bug report on formula1. This should run correctly since 2e5 and 2e-5 are correct token accordint to the guideline. 
+    /// </summary>
+    [TestMethod]
+    public void FormulaConstructor_TestOneTokenSpecial_Valid()
+    {
+        _ = new Formula("2e5");
+        _ = new Formula("2e-5");
+
+    }
+
+    /// <summary>
+    ///     This test make sure program run correctly when special notation token is used.
+    /// </summary>
+    [TestMethod]
+    public void FormulaConstructor_TestOneTokenSpecial2_Valid()
+    {
+        _ = new Formula("2E5");
+        _ = new Formula("2E-5");
+
     }
 
     // --- Tests for Valid Token Rule ---
@@ -99,13 +135,18 @@ public class FormulaSyntaxTests
         _ = new Formula("5 + $");
     }
 
-
+    /// <summary>
+    ///     
+    /// </summary>
     [TestMethod]
     public void FormulaConstructor_TestValidTokens_Valid()
     {
         _ = new Formula("(3 - 2) / x2 + 10");
     }
 
+    /// <summary>
+    ///     
+    /// </summary>
     [TestMethod]
     public void FormulaConstructor_TestVariable_Valid()
     {
@@ -125,6 +166,9 @@ public class FormulaSyntaxTests
         _ = new Formula("A + B");
     }
 
+    /// <summary>
+    ///     
+    /// </summary>
     [TestMethod]
     [ExpectedException(typeof(FormulaFormatException))]
     public void FormulaConstructor_TestVariable2_InValid()
@@ -132,15 +176,15 @@ public class FormulaSyntaxTests
         _ = new Formula("1A + 1B");
     }
 
+    /// <summary>
+    ///     
+    /// </summary>
     [TestMethod]
     [ExpectedException(typeof(FormulaFormatException))]
     public void FormulaConstructor_TestVariable3_InValid()
     {
         _ = new Formula("1A1 + 1B1");
     }
-
-
-
 
     // --- Tests for Closing Parenthesis Rule
 
@@ -149,11 +193,10 @@ public class FormulaSyntaxTests
     /// </summary>
     [TestMethod]
     [ExpectedException(typeof(FormulaFormatException))]
-    public void FormulaConstructor_TestMoreClosingParentheses_Invalid()
+    public void FormulaConstructor_TestClosingParentheses_Invalid()
     {
         _ = new Formula("5 + 2) * 3)");
     }
-
 
     // --- Tests for Balanced Parentheses Rule
 
@@ -169,6 +212,9 @@ public class FormulaSyntaxTests
         _ = new Formula("(5 + 2 * (3");
     }
 
+    /// <summary>
+    ///     
+    /// </summary>
     [TestMethod]
     public void FormulaConstructor_TestBalancedParentheses_valid()
     {
@@ -193,6 +239,9 @@ public class FormulaSyntaxTests
         _ = new Formula( "1+1" );
     }
 
+    /// <summary>
+    ///     
+    /// </summary>
     [TestMethod]
     [ExpectedException(typeof(FormulaFormatException))]
     public void FormulaConstructor_TestInvalidFirstToken_Invalid()
@@ -200,91 +249,159 @@ public class FormulaSyntaxTests
         _ = new Formula("+ 5 * 2");
     }
 
+    /// <summary>
+    ///     
+    /// </summary>
     [TestMethod]
-    public void FormulaConstructor_TestValidFirstToken_Valid()
+    public void FormulaConstructor_FristTokenNumber_Valid()
     {
         _ = new Formula("5 * 2");
-        _ = new Formula("(3 + 4)");
     }
+
+    /// <summary>
+    ///     
+    /// </summary>
+    [TestMethod]
+    public void FormulaConstructor_FirstTokenVariable_Valid()
+    {
+        _ = new Formula("A1 * B2");
+    }
+
+    /// <summary>
+    ///     
+    /// </summary>
+    [TestMethod]
+    public void FormulaConstructor_FirstTokenParentheses_Valid()
+    {
+        _ = new Formula("(1) / 2");
+    }
+
+
 
 
     // --- Tests for  Last Token Rule ---
 
+    /// <summary>
+    ///     
+    /// </summary>
     [TestMethod]
     [ExpectedException(typeof(FormulaFormatException))]
-    public void FormulaConstructor_TestInvalidLastToken_Invalid()
+    public void FormulaConstructor_LastTokenOperator_Invalid()
     {
         _ = new Formula("5 + 2 *");
     }
 
+    /// <summary>
+    ///     
+    ///     1. bug report on formula 1. Should sucessfully throw exception but not since A and a itself without one integer is not a valid token. 
+    /// </summary>
     [TestMethod]
-    public void FormulaConstructor_TestValidLastToken_Valid()
+    [ExpectedException(typeof(FormulaFormatException))]
+    public void FormulaConstructor_LastTokenVariable_Invalid()
     {
-        _ = new Formula("5 * 2");
-        _ = new Formula("(3 + 4)");
-        _ = new Formula("(3 + 4) + A");
+        _ = new Formula("5 + A");
+        _ = new Formula("5 + a");
+    }
+
+    /// <summary>
+    ///     
+    /// </summary>
+    [TestMethod]
+    public void FormulaConstructor_LastTokenNumber_Valid()
+    {
+        _ = new Formula("10 + 1");
+    }
+
+    /// <summary>
+    ///     
+    /// </summary>
+    [TestMethod]
+    public void FormulaConstructor_LastTokenVariable_Valid()
+    {
+        _ = new Formula("10 + A1");
+        _ = new Formula("10 + a1");
     }
 
 
     // --- Tests for Parentheses/Operator Following Rule ---
 
+    /// <summary>
+    ///     
+    /// </summary>
     [TestMethod]
     [ExpectedException(typeof(FormulaFormatException))]
-    public void FormulaConstructor_TestInvalidFollowingOperator_Invalid()
+    public void FormulaConstructor_FollowingOperator_Invalid()
     {
         _ = new Formula("5 + * 2");
     }
 
-
+    /// <summary>
+    ///     
+    /// </summary>
     [TestMethod]
-    public void FormulaConstructor_TestValidFollowingOperator_Valid()
+    [ExpectedException(typeof(FormulaFormatException))]
+    public void FormulaConstructor_FollowingParentheses_Invalid()
+    {
+        _ = new Formula("10 + (*2)");
+    }
+
+    /// <summary>
+    ///     
+    /// </summary>
+    [TestMethod]
+    public void FormulaConstructor_FollowingOperator_Valid()
     {
         _ = new Formula("5 + (2 * 3)");
+    }
+
+    /// <summary>
+    ///     
+    /// </summary>
+    [TestMethod]
+    public void FormulaConstructor_FollowingParentheses_Valid()
+    {
+        _ = new Formula("(a5 + 1) / 5 + (5)");
     }
 
 
     // --- Tests for Extra Following Rule ---
 
+    /// <summary>
+    ///     
+    /// </summary>
     [TestMethod]
     [ExpectedException(typeof(FormulaFormatException))]
-    public void FormulaConstructor_TestInvalidFollowingNumber_Invalid()
+    public void FormulaConstructor_FollowingNumber_Invalid()
     {
         _ = new Formula("5 5 + 2");
     }
-
-
-    [TestMethod]
-    public void FormulaConstructor_TestValidFollowingNumber_Valid()
-    {
-        _ = new Formula("5 + 2");
-        _ = new Formula("a1 * (b2 + c3)");
-    }
-
-
+    
+    /// <summary>
+    ///     
+    ///     A1 B1 throw exception correctly on formula 1 but A1B1 consider as valid token some how fix it later.
+    /// </summary>
     [TestMethod]
     [ExpectedException(typeof(FormulaFormatException))]
-              public void FormulaConstructor_TestFormulaFormatException_Thrown()
+    public void FormulaConstructor_FollowingVariable_Invalid()
     {
-        _ = new Formula("5 +- 2");
+        _ = new Formula("5 + A1 B1");
     }
 
-
+    /// <summary>
+    ///     
+    /// </summary>
     [TestMethod]
-    public void FormulaConstructor_TestValidNumberVariable_Valid()
+    public void FormulaConstructor_FollowingNumber_Valid()
     {
-        _ = new Formula("5 + x");
+        _ = new Formula("(5 + 2)");
     }
 
+    /// <summary>
+    ///     
+    /// </summary>
     [TestMethod]
-    public void FormulaConstructor_TestLongEquation_Valid()
+    public void FormulaConstructor_FollowingClosingParentheses_Valid()
     {
-        _ = new Formula("(A1 * B1) / (100 * 10) / (10 * 2)");
+        _ = new Formula("(1 / 1 * (5 + 2))");
     }
-
-    [TestMethod] //make it invalid
-    public void FormulaConstructor_TestLongEquation_InValid()
-    {
-        _ = new Formula("(A1 * B1) / (100 * 10) / (10 * 2)");
-    }
-
 }

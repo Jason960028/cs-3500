@@ -23,8 +23,8 @@ contain:
 
 # Things updated since last commit
 
-	More tests added to the Valid token rule.
-	Update Program Overview.
+	More tests added to the FormulaSyntaxTests
+	Comments added on some tests
 
 # Time Expenditures:
 	
