@@ -18,13 +18,13 @@ contain:
 
 # Program Overview
 	
-
+	This assignment is testing hidden code and find any error they have. 
 
 
 # Things updated since last commit
 
-	Edit README file
-
+	More tests added to the Valid token rule.
+	Update Program Overview.
 
 # Time Expenditures:
 	
