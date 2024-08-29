@@ -6,7 +6,7 @@
 
 namespace CS3500.FormulaTests;
 
-using CS3500.Formula1
+using CS3500.Formula3
     ; // Change this using statement to use different formula implementations.
 
 /// <summary>
@@ -87,6 +87,9 @@ public class FormulaSyntaxTests
         _ = new Formula("5.5");
     }
 
+    /// <summary>
+    ///     
+    /// </summary>
     [TestMethod]//Question
     [ExpectedException(typeof(FormulaFormatException))]
     public void FormulaConstructor_OneToken_InValid()
@@ -96,16 +99,15 @@ public class FormulaSyntaxTests
         _ = new Formula("$");
         _ = new Formula("x");
         _ = new Formula("100");
+        _ = new Formula("#");
     }
-
-
 
     /// <summary>
     ///     This test make sure program run correctly when special notation is used. 
     ///     1. Bug report on formula1. This should run correctly since 2e5 and 2e-5 are correct token accordint to the guideline. 
     /// </summary>
     [TestMethod]
-    public void FormulaConstructor_TestOneTokenSpecial_Valid()
+    public void FormulaConstructor_OneTokenSpecial_Valid()
     {
         _ = new Formula("2e5");
         _ = new Formula("2e-5");
@@ -130,7 +132,7 @@ public class FormulaSyntaxTests
     /// </summary>
     [TestMethod]
     [ExpectedException(typeof(FormulaFormatException))]
-    public void FormulaConstructor_TestInvalidToken_Invalid()
+    public void FormulaConstructor_InvalidToken_Invalid()
     {
         _ = new Formula("5 + $");
     }
@@ -139,7 +141,7 @@ public class FormulaSyntaxTests
     ///     
     /// </summary>
     [TestMethod]
-    public void FormulaConstructor_TestValidTokens_Valid()
+    public void FormulaConstructor_ValidTokens_Valid()
     {
         _ = new Formula("(3 - 2) / x2 + 10");
     }
@@ -164,6 +166,7 @@ public class FormulaSyntaxTests
     public void FormulaConstructor_TestVariable_InValid()
     {
         _ = new Formula("A + B");
+
     }
 
     /// <summary>
@@ -207,7 +210,7 @@ public class FormulaSyntaxTests
     /// </summary>
     [TestMethod]
     [ExpectedException(typeof(FormulaFormatException))]
-    public void FormulaConstructor_TestBalancedParentheses_Invalid()
+    public void FormulaConstructor_BalancedParentheses_Invalid()
     {
         _ = new Formula("(5 + 2 * (3");
     }
@@ -273,11 +276,9 @@ public class FormulaSyntaxTests
     [TestMethod]
     public void FormulaConstructor_FirstTokenParentheses_Valid()
     {
-        _ = new Formula("(1) / 2");
+        _ = new Formula("(5) / 2");
+        
     }
-
-
-
 
     // --- Tests for  Last Token Rule ---
 

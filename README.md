@@ -23,8 +23,7 @@ contain:
 
 # Things updated since last commit
 
-	More tests added to the FormulaSyntaxTests
-	Comments added on some tests
+	Some tests edited
 
 # Time Expenditures:
 	
