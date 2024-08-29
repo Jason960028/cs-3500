@@ -6,7 +6,8 @@
 
 namespace CS3500.FormulaTests;
 
-using CS3500.Formula1; // Change this using statement to use different formula implementations.
+using CS3500.Formula1
+    ; // Change this using statement to use different formula implementations.
 
 /// <summary>
 ///   <para>
@@ -105,6 +106,41 @@ public class FormulaSyntaxTests
         _ = new Formula("(3 - 2) / x2 + 10");
     }
 
+    [TestMethod]
+    public void FormulaConstructor_TestVariable_Valid()
+    {
+        _ = new Formula("A1 + B1");
+    }
+
+    /// <summary>
+    /// Test for Invalid combination of variable token.
+    /// This test should successfully throw exception.
+    /// 
+    /// 1.bug report for formula1. Should throw exception but not throwing.
+    /// </summary>
+    [TestMethod]
+    [ExpectedException(typeof(FormulaFormatException))]
+    public void FormulaConstructor_TestVariable_InValid()
+    {
+        _ = new Formula("A + B");
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(FormulaFormatException))]
+    public void FormulaConstructor_TestVariable2_InValid()
+    {
+        _ = new Formula("1A + 1B");
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(FormulaFormatException))]
+    public void FormulaConstructor_TestVariable3_InValid()
+    {
+        _ = new Formula("1A1 + 1B1");
+    }
+
+
+
 
     // --- Tests for Closing Parenthesis Rule
 
@@ -122,17 +158,19 @@ public class FormulaSyntaxTests
     // --- Tests for Balanced Parentheses Rule
 
     /// <summary>
-    /// Bug report on this formula1.
+    /// Test for unbalanced parentheses equation. This test should throw exception sucessfully.
+    /// 1. Bug report on this formula1. The equation is indeed not valid equation, but running correctly.
+    /// 
     /// </summary>
     [TestMethod]
     [ExpectedException(typeof(FormulaFormatException))]
-    public void FormulaConstructor_TestUnbalancedParentheses_Invalid()
+    public void FormulaConstructor_TestBalancedParentheses_Invalid()
     {
         _ = new Formula("(5 + 2 * (3");
     }
 
     [TestMethod]
-    public void FormulaConstructor_TestUnbalancedParentheses_valid()
+    public void FormulaConstructor_TestBalancedParentheses_valid()
     {
         _ = new Formula("(10 + 2) / (3)");
     }
@@ -225,7 +263,7 @@ public class FormulaSyntaxTests
 
     [TestMethod]
     [ExpectedException(typeof(FormulaFormatException))]
-    public void FormulaConstructor_TestFormulaFormatException_Thrown()
+              public void FormulaConstructor_TestFormulaFormatException_Thrown()
     {
         _ = new Formula("5 +- 2");
     }
@@ -235,6 +273,18 @@ public class FormulaSyntaxTests
     public void FormulaConstructor_TestValidNumberVariable_Valid()
     {
         _ = new Formula("5 + x");
+    }
+
+    [TestMethod]
+    public void FormulaConstructor_TestLongEquation_Valid()
+    {
+        _ = new Formula("(A1 * B1) / (100 * 10) / (10 * 2)");
+    }
+
+    [TestMethod] //make it invalid
+    public void FormulaConstructor_TestLongEquation_InValid()
+    {
+        _ = new Formula("(A1 * B1) / (100 * 10) / (10 * 2)");
     }
 
 }
