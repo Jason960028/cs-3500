@@ -6,7 +6,7 @@
 
 namespace CS3500.FormulaTests;
 
-using CS3500.Formula1
+using CS3500.Formula3
     ; // Change this using statement to use different formula implementations.
 
 /// <summary>
@@ -78,7 +78,7 @@ public class FormulaSyntaxTests
     ///     just number, and number with decimal point.
     /// </summary>
     [TestMethod]
-    public void FormulaConstructor_TestOneToken_Valid()
+    public void FormulaConstructor_OneToken_Valid()
     {
         _ = new Formula("A1");
         _ = new Formula("123");
@@ -103,22 +103,20 @@ public class FormulaSyntaxTests
     ///      Test for lower case specific notation.
     /// </summary>
     [TestMethod]
-    public void FormulaConstructor_OneTokenSpecial_Valid()
+    public void FormulaConstructor_OneTokenLowerSpecificNotation_Valid()
     {
         _ = new Formula("2e5");
         _ = new Formula("2e-5");
-
     }
 
     /// <summary>
     ///     Test for upper case specific notation.
     /// </summary>
     [TestMethod]
-    public void FormulaConstructor_TestOneTokenSpecial2_Valid()
+    public void FormulaConstructor_OneTokenUpperSpecificNotation_Valid()
     {
         _ = new Formula("2E5");
         _ = new Formula("2E-5");
-
     }
 
     // --- Tests for Valid Token Rule ---
@@ -128,7 +126,7 @@ public class FormulaSyntaxTests
     /// </summary>
     [TestMethod]
     [ExpectedException(typeof(FormulaFormatException))]
-    public void FormulaConstructor_InvalidToken_Invalid()
+    public void FormulaConstructor_InvalidTokenExpression_Invalid()
     {
         _ = new Formula("5 + $");
     }
@@ -138,7 +136,7 @@ public class FormulaSyntaxTests
     ///     Letter follow by one number.
     /// </summary>
     [TestMethod]
-    public void FormulaConstructor_TestVariable_Valid()
+    public void FormulaConstructor_VariableExpression_Valid()
     {
         _ = new Formula("A1 + B1");
     }
@@ -148,10 +146,9 @@ public class FormulaSyntaxTests
     /// </summary>
     [TestMethod]
     [ExpectedException(typeof(FormulaFormatException))]
-    public void FormulaConstructor_TestVariable_InValid()
+    public void FormulaConstructor_VariableExpression_InValid()
     {
         _ = new Formula("A + B");
-
     }
 
     /// <summary>
@@ -159,7 +156,7 @@ public class FormulaSyntaxTests
     /// </summary>
     [TestMethod]
     [ExpectedException(typeof(FormulaFormatException))]
-    public void FormulaConstructor_TestVariable2_InValid()
+    public void FormulaConstructor_VariableExpression2_InValid()
     {
         _ = new Formula("1A + 1B");
     }
@@ -169,7 +166,7 @@ public class FormulaSyntaxTests
     /// </summary>
     [TestMethod]
     [ExpectedException(typeof(FormulaFormatException))]
-    public void FormulaConstructor_TestVariable3_InValid()
+    public void FormulaConstructor_VariableExpression3_InValid()
     {
         _ = new Formula("1A1 + 1B1");
     }
@@ -178,7 +175,7 @@ public class FormulaSyntaxTests
     ///     Test for expression with over all valid tokens and rules followed.
     /// </summary>
     [TestMethod]
-    public void FormulaConstructor_ValidTokens_Valid()
+    public void FormulaConstructor_Expression_Valid()
     {
         _ = new Formula("(3 - 2) / x2 + 10");
     }
@@ -229,7 +226,7 @@ public class FormulaSyntaxTests
     ///   </remarks>
     /// </summary>
     [TestMethod]
-    public void FormulaConstructor_TestFirstTokenNumber_Valid( )
+    public void FormulaConstructor_FirstTokenNumber_Valid( )
     {
         _ = new Formula("1+1");
     }

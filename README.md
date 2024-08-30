@@ -4,7 +4,7 @@
 - Course:     CS3500 Software Practice
 - GitHub ID:  Jason960028
 - Repo:       https://github.com/Jason960028/cs-3500
-- Commit Date: Aug 29 2024
+- Commit Date: Aug 30 2024
 - Solution: 
 - Assignment: assignment 01
 
@@ -23,8 +23,7 @@ contain:
 
 # Things updated since last commit
 
-	Commented all tests.
-	Added more edge case test
+	Tests name editied
 
 # Time Expenditures:
 	
