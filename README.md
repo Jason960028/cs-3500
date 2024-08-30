@@ -23,9 +23,9 @@ contain:
 
 # Things updated since last commit
 
-	Tests name editied
+	Final Version.
 
 # Time Expenditures:
 	
-	1. Assignment One        Predicted Hours: 7       Actual Hours: Still in progress
+	1. Assignment One        Predicted Hours: 7       Actual Hours: 5
 	2. Assignment Two
