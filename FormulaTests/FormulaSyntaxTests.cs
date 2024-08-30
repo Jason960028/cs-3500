@@ -6,7 +6,7 @@
 
 namespace CS3500.FormulaTests;
 
-using CS3500.Formula3
+using CS3500.Formula1
     ; // Change this using statement to use different formula implementations.
 
 /// <summary>
@@ -74,8 +74,8 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     Test for single token which are letter follow by single number,
-    ///     just number, and number with decimal point.
+    ///     Test for a single token which is a letter follow by a single number,
+    ///     just a number, and a number with a decimal point.
     /// </summary>
     [TestMethod]
     public void FormulaConstructor_OneToken_Valid()
@@ -110,7 +110,7 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     Test for upper case specific notation.
+    ///     Test for uppercase specific notation.
     /// </summary>
     [TestMethod]
     public void FormulaConstructor_OneTokenUpperSpecificNotation_Valid()
@@ -122,7 +122,7 @@ public class FormulaSyntaxTests
     // --- Tests for Valid Token Rule ---
 
     /// <summary>
-    ///     Test for expression with invalid token.
+    ///     Test for expression with an invalid token.
     /// </summary>
     [TestMethod]
     [ExpectedException(typeof(FormulaFormatException))]
@@ -132,7 +132,7 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     Test for valid variable expression token rule.
+    ///     Test for a valid variable expression token rule.
     ///     Letter follow by one number.
     /// </summary>
     [TestMethod]
@@ -142,7 +142,7 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     Test for invalid expression with just single letter.
+    ///     Test for an invalid expression with just a single letter.
     /// </summary>
     [TestMethod]
     [ExpectedException(typeof(FormulaFormatException))]
@@ -152,7 +152,7 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     Test for Invalid expression with number followed by letter.
+    ///     Test for an Invalid expression with a number followed by a letter.
     /// </summary>
     [TestMethod]
     [ExpectedException(typeof(FormulaFormatException))]
@@ -162,7 +162,7 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     Test for Invalid expression with number followed by letter and then number again.
+    ///     Test for an Invalid expression with a number followed by a letter and then a number again.
     /// </summary>
     [TestMethod]
     [ExpectedException(typeof(FormulaFormatException))]
@@ -172,7 +172,7 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     Test for expression with over all valid tokens and rules followed.
+    ///     Test for an expression with overall valid tokens and rules followed.
     /// </summary>
     [TestMethod]
     public void FormulaConstructor_Expression_Valid()
@@ -183,7 +183,7 @@ public class FormulaSyntaxTests
     // --- Tests for Closing Parenthesis Rule
 
     /// <summary>
-    ///     Test for unbalanced number of opening and closing parenthesis.
+    ///     Test for an unbalanced number of opening and closing parenthesis.
     /// </summary>
     [TestMethod]
     [ExpectedException(typeof(FormulaFormatException))]
@@ -195,7 +195,7 @@ public class FormulaSyntaxTests
     // --- Tests for Balanced Parenthesis Rule
 
     /// <summary>
-    ///     Test for not equal number of opening and closing parenthesis.
+    ///     Test for an unequal number of opening and closing parenthesis expression.
     /// </summary>
     [TestMethod]
     [ExpectedException(typeof(FormulaFormatException))]
@@ -205,7 +205,7 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     Test for valid expression with balanced parenthesis.
+    ///     Test for a valid expression with balanced parenthesis.
     /// </summary>
     [TestMethod]
     public void FormulaConstructor_BalancedParenthesis_valid()
@@ -232,7 +232,7 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     Test for invalid first token starter.
+    ///     Test for an invalid first token starter.
     ///     Operator.
     /// </summary>
     [TestMethod]
@@ -243,7 +243,7 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     Test for valid first token starter.
+    ///     Test for a valid first token starter.
     ///     Number.
     /// </summary>
     [TestMethod]
@@ -253,7 +253,7 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     Test for valid first token starter.
+    ///     Test for a valid first token starter.
     ///     Variable.
     /// </summary>
     [TestMethod]
@@ -263,7 +263,7 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     Test for valid first token.
+    ///     Test for a valid first token.
     ///     Parenthesis.
     /// </summary>
     [TestMethod]
@@ -272,10 +272,10 @@ public class FormulaSyntaxTests
         _ = new Formula("(5) / 2");
     }
 
-    // --- Tests for  Last Token Rule ---
+    // --- Tests for Last Token Rule ---
 
     /// <summary>
-    ///     Test for invalid last token.
+    ///     Test for an invalid last token.
     ///     Operator.
     /// </summary>
     [TestMethod]
@@ -286,7 +286,7 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     Test for invalid last token.
+    ///     Test for an invalid last token.
     ///     Single letter.
     /// </summary>
     [TestMethod]
@@ -298,7 +298,7 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     Test for invalid last token.
+    ///     Test for an invalid last token.
     ///     Opening parenthesis.
     /// </summary>
     [TestMethod]
@@ -309,7 +309,8 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     Test for valid last token. Number.
+    ///     Test for a valid last token.
+    ///     Number.
     /// </summary>
     [TestMethod]
     public void FormulaConstructor_LastTokenNumber_Valid()
@@ -318,7 +319,8 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     Test for valid last token. Variable.
+    ///     Test for a valid last token.
+    ///     Variable.
     /// </summary>
     [TestMethod]
     public void FormulaConstructor_LastTokenVariable_Valid()
@@ -330,7 +332,7 @@ public class FormulaSyntaxTests
     // --- Tests for Parenthesis/Operator Following Rule ---
 
     /// <summary>
-    ///     Test for invalid following rule.
+    ///     Test for an invalid following rule.
     ///     Operator followed by an operator.
     /// </summary>
     [TestMethod]
@@ -341,7 +343,7 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     Test for invalid following rule.
+    ///     Test for an invalid following rule.
     ///     Opening parenthesis followed by an operator.
     /// </summary>
     [TestMethod]
@@ -352,7 +354,7 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     Test for valid operator following rule.
+    ///     Test for a valid operator following rule.
     ///     Operator followed by number, variable, or opening parenthesis.
     /// </summary>
     [TestMethod]
@@ -362,7 +364,7 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     Test for valid parenthesis following rule.
+    ///     Test for a valid parenthesis following rule.
     ///     Opening parenthesis followed by a variable or a number.
     ///     Closing parenthesis followed by an operator.
     /// </summary>
@@ -376,7 +378,7 @@ public class FormulaSyntaxTests
     // --- Tests for Extra Following Rule ---
 
     /// <summary>
-    ///     Test for invalid number following rule.
+    ///     Test for an invalid number following rule.
     ///     Number followed by a number.
     /// </summary>
     [TestMethod]
@@ -387,7 +389,7 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     Test for invalid variable following rule.
+    ///     Test for an invalid variable following rule.
     ///     Variable followed by a variable.
     ///     
     /// </summary>
@@ -399,7 +401,7 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     Test for invalid closing parenthesis following rule.
+    ///     Test for an invalid closing parenthesis following rule.
     ///     Closing parenthesis followed by number and variable.
     ///     
     /// </summary>
@@ -412,7 +414,7 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     Test for valid number following rule.
+    ///     Test for a valid number following rule.
     ///     Number followed by an operator or closing parenthesis.
     /// </summary>
     [TestMethod]
@@ -422,7 +424,7 @@ public class FormulaSyntaxTests
     }
 
     /// <summary>
-    ///     Test for valid closing parenthesis following rule.
+    ///     Test for a valid closing parenthesis following rule.
     ///     Closing parenthesis followed by an operator or closing parenthesis.
     /// </summary>
     [TestMethod]
